@@ -30,4 +30,17 @@ _===_
 	} catch (exception& ex) {
 	 	cout << "   caught exception: " << ex.what() << endl;  // should print "Invalid code '5'"
 	}
+	for (size_t i = 1; i < 5; i++)
+	{
+		int temp = i;
+		for (size_t j = 0; j < 7; j++)
+		{
+			temp *=10;
+			temp +=i;
+		}
+		cout << temp << endl;
+		cout << ariel::snowman(temp) << endl;
+	}
+
+	
 }
