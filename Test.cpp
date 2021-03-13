@@ -6,20 +6,31 @@ using namespace ariel;
 #include <stdexcept>
 using namespace std;
 
+string nospace(string input){
+    string out ;
+    for (size_t i = 0; i < input.length(); i++)
+    {
+        char at = input.at(i);
+        if(at != '\n' && at != ' ' && at != '\t' && at != '\r'){
+            out += at;
+        }
+    }
+    return out;
+}
 
 TEST_CASE("Good input"){
     //1
-    CHECK(snowman(11111111) == string("_===_\n(.,.)\n<( : )>\n( : )"));
+    CHECK(nospace(snowman(11111111)) == nospace(string("_===_\n(.,.)\n<( : )>\n( : )")));
     //2
-    CHECK(snowman(22222222) == string(" ___\n.....\n\\(o.o)/\n (] [)\n (" ")"));
+    CHECK(nospace(snowman(22222222)) == nospace(string(" ___\n.....\n\\(o.o)/\n (] [)\n (\" \")")));
     //3
-    CHECK(snowman(33333333) == string("  _\n /_\\\n (O_O)\n/(> <)\\\n (___)"));
+    CHECK(nospace(snowman(33333333)) == nospace(string("  _\n /_\\\n (O_O)\n/(> <)\\\n (___)")));
     //4
-    CHECK(snowman(44444444) == string(" ___\n(_*_)\n(- -)\n(   )\n(   )"));
+    CHECK(nospace(snowman(44444444)) == nospace(string(" ___\n(_*_)\n(- -)\n(   )\n(   )")));
     //5
-    CHECK(snowman(11114411) == string("_===_\n(.,.)\n( : )\n( : )"));
+    CHECK(nospace(snowman(11114411)) == nospace(string("_===_\n(.,.)\n( : )\n( : )")));
     //6
-    CHECK(snowman(33232124) == string("   _\n  /_\\\n\\(o_O)\n (] [)>\n (   )"));
+    CHECK(nospace(snowman(33232124)) == nospace(string("   _\n  /_\\\n\\(o_O)\n (] [)>\n (   )")));
     //7
     CHECK(snowman(33232124) != "");
 }
@@ -29,10 +40,10 @@ TEST_CASE("bad input"){
     int right_len = 8;
     int input;
     //8 - 15
-    for (size_t i = 0; i < right_len; i++)
+    for (size_t i = 1; i < right_len; i++)
     {
         input = 0;
-        for (size_t j = 0; j <= i; j++)
+        for (size_t j = 0; j < i; j++)
         {
             input *=10;
             ++input;
@@ -77,3 +88,5 @@ TEST_CASE("bad input"){
     // 32 check type of execption for long input 
     CHECK_THROWS_AS(snowman(111111111),invalid_argument);
 }
+
+
