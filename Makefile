@@ -9,9 +9,9 @@ SOURCES=snowman.cpp
 run: test
 	./$^
 
-demo: Demo.o $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -o demo
-	./demo
+main: main.o $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o main
+	./main
 
 test: TestRunner.o StudentTest1.o StudentTest2.o StudentTest3.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o test
