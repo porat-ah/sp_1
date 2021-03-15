@@ -35,14 +35,15 @@ string snowman_from_name(string name){
 	array<int ,27> map = {1, 3, 4, 4, 1, 1, 3, 2, 3, 1, 3, 4, 4, 3, 2, 3, 2, 2, 2, 4, 4, 4,2, 3, 2, 1, 4};
 	int code =0 ;
 	int code_len = 0;
+	int i =0;
 	while (code_len <8)
 	{
-		for (size_t i = 0; i < code_len && i < name.length(); i++)
-	{
+		++i;
+		i %= name.length();
 		code *= 10;
 		code += map.at(name.at(i)-97);
 		++code_len;
-	}
+	
 	}
 	return ariel::snowman(code);
 }
@@ -65,13 +66,12 @@ class snowman{
 	}
 
 	 void printscrean(string action){
-			print(name);
 			print(" ");
-			printhel();
 			print(" ");
 			print(look);
 			print(" ");
-			print(" ");
+			print(name);
+			printhel();
 			string line;
 			for (size_t i = 0; i < 10; i++)
 			{
@@ -107,6 +107,7 @@ class snowman{
 		print("choose your action : ");
 		print("attack : 0  ||  defend : 1 ");
 		cin >> act;
+		system("clear");
 		return actions[act];
 	}
 	public:
@@ -157,6 +158,7 @@ class snowman{
 			string action1 , action2;
 			while (player->hel && hel)
 			{
+				
 				action1 = player->act();
 				int act = 0;
 				if(sol_type){
@@ -224,7 +226,6 @@ class room{
 		}
 };
 
-
 int main() {
 	srand(time(0));
 	string name;
@@ -239,7 +240,7 @@ int main() {
 	{
 	case 0 :
 		name = name_generator();
-		print(name);
+		//print(name);
 		break;
 	case 1:
 		cout << "enter the snowman name" << endl;
@@ -266,6 +267,7 @@ int main() {
 	snowman player(wt,st,name);
 	while (true)
 	{
+		system("clear");
 		room r;
 		r.interacte(&player);
 		if(!player.hel)
