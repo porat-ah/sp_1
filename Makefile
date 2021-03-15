@@ -32,5 +32,5 @@ tidy:
 	clang-tidy $(SOURCES) -checks=bugprone-*,clang-analyzer-*,cppcoreguidelines-*,performance-*,portability-*,readability-* --warnings-as-errors=* --
 
 clean:
-	rm -f *.o test
+	rm -f *.o test main 
 	rm -f StudentTest*.cpp
