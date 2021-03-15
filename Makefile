@@ -9,7 +9,7 @@ SOURCES=snowman.cpp
 run: test
 	./$^
 
-main: main.o $(OBJECTS)
+main: Main.o $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o main
 	./main
 

@@ -8,6 +8,17 @@
 using namespace std;
 #define print(x) cout << x << endl
 
+string nospace(string input){
+    string out ;
+    for (size_t i = 0; i < input.length(); i++)
+    {
+        char at = input.at(i);
+        if(at != '\n' && at != ' ' && at != '\t' && at != '\r'){
+            out += at;
+        }
+    }
+    return out;
+}
 
 string name_generator(){
 	string out ;
@@ -23,10 +34,15 @@ string name_generator(){
 string snowman_from_name(string name){
 	array<int ,27> map = {1, 3, 4, 4, 1, 1, 3, 2, 3, 1, 3, 4, 4, 3, 2, 3, 2, 2, 2, 4, 4, 4,2, 3, 2, 1, 4};
 	int code =0 ;
-	for (size_t i = 0; i < 8; i++)
+	int code_len = 0;
+	while (code_len <8)
+	{
+		for (size_t i = 0; i < code_len && i < name.length(); i++)
 	{
 		code *= 10;
 		code += map.at(name.at(i)-97);
+		++code_len;
+	}
 	}
 	return ariel::snowman(code);
 }
@@ -226,13 +242,13 @@ int main() {
 		print(name);
 		break;
 	case 1:
-		cout << "enter the snowman name ( must be 8 letters)" << endl;
+		cout << "enter the snowman name" << endl;
 		cin >> name;
 		break;
 	}
 	print("yout name is : " + name);
 	print("this is you: " );
-	print(snowman_from_name(name));
+	print(snowman_from_name(nospace(name)));
 	
 	print("now lets build your character : ");
 	print(" you can choose from three types of weapons");
